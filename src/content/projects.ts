@@ -331,6 +331,149 @@ export const projects: readonly Project[] = [
       notice:
         "Private defensive-research repository — operational source code is not published.",
     },
+    caseStudy: {
+      sections: [
+        {
+          id: "context",
+          kind: "context",
+          eyebrow: "Research context",
+          title: "RAG systems inherit risk from the knowledge they retrieve.",
+          paragraphs: [
+            "Retrieval-augmented generation gives a model access to external knowledge by retrieving relevant documents and supplying them as context. That creates a different security surface from a model operating only from its internal parameters: manipulated content in an external knowledge base may be surfaced to the answer model.",
+            "My Bachelor's thesis at the University of Twente, Measuring the Effectiveness of RAG Poisoning Attacks on Cyber Threat Intelligence Data (3 July 2026), investigated how effective this kind of poisoning can be in a controlled cyber threat intelligence setting.",
+          ],
+        },
+        {
+          id: "question",
+          kind: "problem",
+          eyebrow: "Research question",
+          title: "When poisoned content is retrieved, does it actually change the answer?",
+          paragraphs: [
+            "A poisoned document appearing in retrieved context is not the same thing as a successful attack. A robust evaluation needs to distinguish retrieval exposure—whether poisoned content was retrieved—from final-answer effect—whether that content actually altered the resulting answer.",
+            "This separation became a core design decision in the thesis. Retrieval rate alone is not treated as attack success.",
+          ],
+        },
+        {
+          id: "testbed",
+          kind: "architecture",
+          eyebrow: "Experimental system",
+          title: "A controlled RAG testbed over public cyber threat intelligence.",
+          paragraphs: [
+            "I built a controlled testbed using the APTNotes public cyber threat intelligence corpus. Its knowledge base contained 10,249 document chunks, created with 350-word chunks and a 60-word overlap.",
+            "The system used all-MiniLM-L6-v2 embeddings, ChromaDB, and cosine similarity. It was designed so clean and poisoned retrieval behaviour could be measured systematically without exposing operational poisoning code or payload construction details.",
+          ],
+        },
+        {
+          id: "models",
+          kind: "approach",
+          eyebrow: "Model comparison",
+          title: "The answer model mattered as much as the retrieval pipeline.",
+          paragraphs: [
+            "The evaluation used Qwen3-30B and Llama 3.2 1B across different generator and answer-model pairings, giving four pairings in total. The purpose was not simply to compare model quality, but to observe whether answer models responded differently when exposed to poisoned retrieved context.",
+          ],
+        },
+        {
+          id: "attacks",
+          kind: "challenges",
+          eyebrow: "Threat model",
+          title: "Five poisoning strategies, evaluated under controlled conditions.",
+          paragraphs: [
+            "The controlled evaluation covered black-box factual poisoning, retriever-aware factual poisoning, black-box instruction injection, retriever-aware instruction injection, and jamming or answer disruption. Some categories introduced misleading factual content, some attempted to influence model behaviour through retrieved instructions, and one focused on disrupting useful answering.",
+            "The research goal was measurement, not operational exploitation. The public case study deliberately omits construction details, payloads, and example malicious instructions.",
+          ],
+        },
+        {
+          id: "experiment",
+          kind: "implementation",
+          eyebrow: "Experiment design",
+          title: "Attack strength was tested across multiple poison budgets and retrieval depths.",
+          paragraphs: [
+            "The poison budget m was tested at 5, 25, and 50; retrieval depth k was also tested at 5, 25, and 50. The evaluation covered combinations of these values across all four model pairings.",
+            "The clean evaluation set contained 100 generated questions answerable from the unmodified corpus. Here, m controls how much poisoned material is present and k controls how much context the retrieval system returns; the case study does not describe how that material was generated or inserted.",
+          ],
+        },
+        {
+          id: "measurement",
+          kind: "testing",
+          eyebrow: "Measurement",
+          title: "Retrieval success and final attack success were measured separately.",
+          paragraphs: [
+            "The experiments measured two distinct outcomes: whether a poisoned chunk entered the retrieved context, and whether the final model answer was actually affected. A retrieval system may expose a model to malicious content without the model following or adopting it; conversely, some content may have a strong effect once retrieved.",
+            "This is an evaluation-design lesson beyond this thesis: retrieval exposure and final-answer compromise should be measured separately when assessing end-to-end RAG risk.",
+          ],
+        },
+        {
+          id: "results",
+          kind: "outcome",
+          eyebrow: "Results",
+          title: "The most disruptive strategies were not always the most sophisticated.",
+          paragraphs: [
+            "In this controlled evaluation, jamming produced the highest macro attack-success rate at 59.2%, followed by black-box instruction injection at 50.3%. Retriever-aware instruction injection reached 34.5%, black-box factual poisoning 22.9%, and retriever-aware factual poisoning 20.9%.",
+            "These are experiment-specific macro results from this testbed, not rates that generalise to all RAG systems. No statistical-significance claim is implied.",
+          ],
+        },
+        {
+          id: "patterns",
+          kind: "testing",
+          eyebrow: "What changed the outcome",
+          title: "Poison budget, retrieval depth and answer model all influenced vulnerability.",
+          paragraphs: [
+            "In the thesis experiments, attacks generally became stronger when the poison budget m was at least as large as the retrieval depth k. Retrieving poisoned content still did not guarantee final-answer compromise.",
+            "The answer model had a stronger influence on attack effectiveness than the model used to generate the poisoned material. These are observations from the controlled experiments, not universal claims about every model or RAG implementation.",
+          ],
+        },
+        {
+          id: "interpretation",
+          kind: "reflection",
+          eyebrow: "Interpretation",
+          title: "A vulnerable retriever does not necessarily imply a compromised answer.",
+          paragraphs: [
+            "A system can retrieve poisoned content and still resist changing its final answer. Evaluating only retrieval-level metrics can therefore overstate or misunderstand downstream risk.",
+            "Final-answer behaviour still needs explicit testing because an answer model interprets retrieved context probabilistically. The end-to-end system is what matters.",
+          ],
+        },
+        {
+          id: "defence",
+          kind: "constraints",
+          eyebrow: "Defensive implications",
+          title: "RAG security has to consider the context, not just the model.",
+          paragraphs: [
+            "The findings point to high-level engineering practices: preserve provenance for retrieved content, make retrieved-context composition observable, treat retrieved documents as data rather than trusted instructions, monitor unusual fallback or answer behaviour, and preserve traceability between retrieved material and final responses.",
+            "Teams should evaluate retrieval and final-answer behaviour together, and test multiple model configurations rather than assuming all models respond identically. These measures do not eliminate poisoning risk.",
+          ],
+        },
+        {
+          id: "limitations",
+          kind: "constraints",
+          eyebrow: "Limitations",
+          title: "A controlled experiment is not a universal security benchmark.",
+          paragraphs: [
+            "The study used one public cyber threat intelligence corpus, one embedding model, one vector-store configuration, a defined set of attack categories, two answer-model families across four pairings, 100 generated clean-answerable questions, and controlled experimental settings.",
+            "The results demonstrate behaviour in this testbed, not a universal rate of vulnerability for every RAG application.",
+          ],
+        },
+        {
+          id: "outcome",
+          kind: "outcome",
+          eyebrow: "Outcome",
+          title: "A repeatable way to measure poisoning beyond retrieval alone.",
+          paragraphs: [
+            "The thesis produced a controlled RAG cybersecurity testbed, a clean evaluation set, experiments across five poisoning categories, multiple poison budgets and retrieval depths, and comparisons across four model pairings.",
+            "Its core contribution was separate measurement of retrieved poison and final-answer compromise, alongside defensive findings about how RAG systems respond to manipulated knowledge. It is research infrastructure, not production security software.",
+          ],
+        },
+        {
+          id: "reflection",
+          kind: "reflection",
+          eyebrow: "Reflection",
+          title: "Security evaluation has to follow the entire AI pipeline.",
+          paragraphs: [
+            "The thesis reinforced that evaluating an AI system at only one layer can be misleading. Retrieval, context construction, and answer generation interact: a poisoned chunk entering context matters, but final behaviour depends on how the answer model interprets it.",
+            "For AI engineering, reliability and security testing should measure the complete path from data ingestion through retrieval to final output. The work gave me experience designing controlled AI evaluations, separating metrics, analysing model behaviour, and translating experimental results into engineering implications.",
+          ],
+        },
+      ],
+    },
   },
   {
     id: "infoplaza",

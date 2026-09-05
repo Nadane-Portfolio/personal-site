@@ -37,11 +37,11 @@ export const contactLinks: readonly ExternalLink[] = [
 ];
 
 export const navigation: readonly NavigationItem[] = [
-  { label: "Work", href: "#work" },
-  { label: "Approach", href: "#approach" },
-  { label: "Skills", href: "#skills" },
-  { label: "Background", href: "#background" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "Approach", href: "/#approach" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Background", href: "/#background" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const heroVisualGuidance = {

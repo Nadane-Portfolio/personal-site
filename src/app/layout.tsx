@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
+import { SkipLink } from "@/components/layout/skip-link";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,7 +32,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      <body>{children}</body>
+      <body className="site-shell">
+        <SkipLink />
+        <SiteHeader />
+        <main className="site-main" id="main-content" tabIndex={-1}>
+          {children}
+        </main>
+        <SiteFooter />
+      </body>
     </html>
   );
 }

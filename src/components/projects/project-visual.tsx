@@ -25,7 +25,7 @@ export function ProjectVisual({ projectId }: ProjectVisualProps) {
           </div>
           <div className="twinx-visual__outputs">
             <span>Grounded Q&amp;A</span>
-            <span>Report drafts</span>
+            <span>Source traceability</span>
           </div>
         </div>
       );

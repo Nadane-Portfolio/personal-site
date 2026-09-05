@@ -4,23 +4,23 @@ export const projects: readonly Project[] = [
   {
     id: "twinx",
     slug: "twinx-ai-knowledge-assistant",
-    title: "Twinx",
-    subtitle: "AI Knowledge & Reporting Assistant",
+    title: "AI Knowledge Assistant",
+    subtitle: "Configurable RAG assistant for document-grounded Q&A",
     kind: "Client project",
     duration: "10 weeks",
     categories: ["AI", "RAG"],
     featured: true,
     displayOrder: 1,
     summary:
-      "Turned an open-ended request to make document-heavy work faster with AI into a working RAG-based assistant. After researching possible approaches and iterating with Twinx on changing requirements, I worked on a system that synchronises project documents, supports grounded Q&A, and generates structured first-draft reports, with both OpenAI and fully local execution modes.",
+      "A reusable RAG assistant for synchronising Dropbox documents and answering questions with grounded, traceable context. It originated in a real client project and was later sanitised for reuse, with OpenAI-backed and local execution paths retained.",
     role: "AI & Innovation Support Intern",
     contributions: [
       "Researched possible approaches for the open-ended brief",
-      "Worked on document synchronisation, grounded Q&A, and structured first-draft reporting",
-      "Iterated with Twinx as requirements changed",
+      "Worked on document synchronisation, retrieval, and grounded Q&A",
+      "Adapted the architecture as client requirements changed",
     ],
     attributionNote:
-      "This was a team/client project. The portfolio must not imply that I built every component personally, and newsletter functionality is not presented as my contribution.",
+      "This portfolio shows my contribution to a team/client project and its later sanitised adaptation; it does not represent the entire original client system.",
     technology: [
       "Python",
       "RAG",
@@ -41,10 +41,10 @@ export const projects: readonly Project[] = [
           id: "context",
           kind: "context",
           eyebrow: "Context",
-          title: "A broad request, not a predefined solution.",
+          title: "A broad client request, not a predefined solution.",
           paragraphs: [
-            "Twinx is a subsidy consultancy where a large part of the workflow depends on project documentation. The initial brief was deliberately open-ended: explore how AI could make that work faster.",
-            "At the start, the solution was not obvious. Our team had limited experience with retrieval-augmented generation, so the early engagement focused on understanding the workflow, researching possible approaches, and discussing ideas with Twinx before committing to an implementation.",
+            "Originally developed during a client project for Twinx B.V., a company in the Netherlands, this version was later sanitised and adapted into a reusable AI assistant. Sensitive and client-specific data were removed, while the core document retrieval and cloud/local execution workflow was retained.",
+            "The original brief was deliberately open-ended: explore how AI could make a document-heavy workflow faster. At the start, the solution was not obvious, so the early engagement focused on understanding the workflow, researching possible approaches, and discussing ideas with the original client before committing to an implementation.",
             "The important product question was not simply where AI could be added. It was which parts of the document workflow created friction, and where an AI-assisted system could make a practical difference.",
           ],
         },
@@ -54,7 +54,7 @@ export const projects: readonly Project[] = [
           eyebrow: "Problem",
           title: "Useful AI still depended on a cumbersome document workflow.",
           paragraphs: [
-            "Twinx was already experimenting with custom GPT-style tools, but keeping project knowledge current required documents to be uploaded and maintained manually. The assistant was therefore only as useful as the completeness and freshness of its knowledge base.",
+            "The original client was already experimenting with custom GPT-style tools, but keeping project knowledge current required documents to be uploaded and maintained manually. The assistant was therefore only as useful as the completeness and freshness of its knowledge base.",
             "There was also a reliability concern. A useful system could not simply produce fluent answers; it needed to ground responses in documents belonging to the project and make it easier to understand where information came from.",
             "This led us toward a RAG-based approach in which project documentation could be synchronised, indexed, and retrieved when answering questions.",
           ],
@@ -65,15 +65,15 @@ export const projects: readonly Project[] = [
           eyebrow: "My contribution",
           title: "I helped turn the open brief into a concrete product direction.",
           paragraphs: [
-            "I contributed across discovery and implementation as the requirements became clearer, working with the team and Twinx to turn an open-ended request into a usable direction.",
+            "I contributed across discovery and implementation as the requirements became clearer, working with the team and the original client to turn an open-ended request into a usable direction.",
           ],
           bullets: [
             "Researched possible AI and RAG approaches during discovery.",
             "Contributed to shaping the solution as requirements evolved.",
             "Worked on document synchronisation and the retrieval workflow.",
-            "Worked on grounded question answering and structured first-draft report generation.",
+            "Worked on grounded question answering, source traceability, and conversation context.",
             "Contributed to the local execution mode after the privacy requirement emerged.",
-            "Iterated with Twinx as the project constraints changed.",
+            "Adapted the implementation as the project constraints changed.",
           ],
         },
         {
@@ -84,7 +84,7 @@ export const projects: readonly Project[] = [
           visual: "twinx-system",
           paragraphs: [
             "The working system synchronised project documents from Dropbox, extracted text, split it into chunks, and created embeddings for retrieval in ChromaDB. When a user asked a question, relevant project context was retrieved and supplied to the model alongside conversation context.",
-            "The Chainlit interface supported grounded responses that could reference source filenames, helping users trace an answer back to the relevant project material. The same retrieved context also supported structured first-draft report generation.",
+            "The Chainlit interface supported grounded responses that could reference source filenames, helping users trace an answer back to the relevant project material. Conversation context was supplied alongside retrieved document context to support follow-up questions.",
             "The wider system supported PDF, DOCX, TXT, CSV, and XLSX project documents. Cloud execution used OpenAI for embeddings and generation; the local path used Sentence Transformers and Ollama.",
           ],
         },
@@ -94,19 +94,19 @@ export const projects: readonly Project[] = [
           eyebrow: "Changing requirements",
           title: "Privacy changed the architecture.",
           paragraphs: [
-            "During the engagement, Twinx raised concerns about sending potentially sensitive project information to an external AI API. That feedback changed the technical direction rather than being treated as a reason to keep the original design fixed.",
+            "During the engagement, the original client raised concerns about sending potentially sensitive project information to an external AI API. That feedback changed the technical direction rather than being treated as a reason to keep the original design fixed.",
             "I worked on a local execution path using Sentence Transformers for embeddings and Ollama for local model execution. This allowed the core document-question-answering workflow to operate without relying on OpenAI for the model path.",
             "It was a practical reminder that client requirements evolve, and that deployment constraints should shape the architecture as the project develops.",
           ],
         },
         {
-          id: "reporting",
+          id: "reusable-version",
           kind: "implementation",
-          eyebrow: "Beyond question answering",
-          title: "The assistant also helped turn project knowledge into first-draft reports.",
+          eyebrow: "Reusable version",
+          title: "Sanitised for reuse beyond the original client.",
           paragraphs: [
-            "Twinx's workflow involved producing structured reports from project information. I worked on a report-generation capability that used retrieved project context to create structured Dutch DOCX first drafts.",
-            "A particularly important behaviour was surfacing missing information explicitly rather than confidently filling gaps with invented content. The generated report remained a draft for human review, not an autonomous final deliverable.",
+            "The current artifact removes sensitive data and generalises client-specific configuration while retaining a functional document-grounded assistant. It represents my implementation and contribution, rather than the entire original team project.",
+            "Another organisation could adapt it to a different document workflow by tailoring its document sources, prompts, and workflow-specific settings. It is a configurable starting point, not a universal plug-and-play product.",
           ],
         },
         {
@@ -115,7 +115,7 @@ export const projects: readonly Project[] = [
           eyebrow: "Reliability",
           title: "Grounding mattered more than simply generating convincing text.",
           paragraphs: [
-            "Retrieval tied answers to the project's indexed documents, while source filenames made the response path more traceable. In report generation, missing information was surfaced instead of being silently fabricated.",
+            "Retrieval ties answers to the assistant's indexed documents, while source filenames make the response path more traceable. This grounding helps constrain answers to the available material; it does not eliminate the need for review or the possibility of incorrect model output.",
             "The system was still something a person needed to review rather than treating model output as automatically correct. Cloud and local modes also brought different operational trade-offs, which needed to be considered alongside the user workflow.",
           ],
         },
@@ -125,7 +125,8 @@ export const projects: readonly Project[] = [
           eyebrow: "Outcome",
           title: "From exploration to a working prototype in ten weeks.",
           paragraphs: [
-            "By the end of the client project, the work had progressed from an open-ended request into a functioning RAG-based assistant. It could synchronise project documentation, retrieve relevant knowledge, support grounded Q&A, and create structured first-draft reports using either OpenAI-backed or local AI paths.",
+            "By the end of the client project, the work had progressed from an open-ended request into a functioning RAG-based assistant. The sanitised version retains Dropbox/document synchronisation, retrieval, grounded Q&A, and OpenAI-backed or local AI paths.",
+            "Structured report generation was explored in the original engagement, but it is not a defining feature of this reusable assistant.",
             "The value was not only the prototype itself, but translating a vague business problem into a concrete, usable technical system while adapting to changing requirements.",
           ],
         },
@@ -135,7 +136,7 @@ export const projects: readonly Project[] = [
           eyebrow: "Reflection",
           title: "The most important decisions were not model choices.",
           paragraphs: [
-            "The project reinforced that useful AI software involves more than connecting an LLM to data. The harder work was understanding the workflow, deciding where retrieval was appropriate, responding to privacy concerns, making outputs traceable, and adjusting the solution as Twinx learned what it needed.",
+            "The project reinforced that useful AI software involves more than connecting an LLM to data. The harder work was understanding the workflow, deciding where retrieval was appropriate, responding to privacy concerns, making outputs traceable, and adjusting the solution as requirements evolved.",
             "It also gave me practical experience with an initially unfamiliar AI architecture and with turning research into a functioning system within a real client engagement.",
           ],
         },
@@ -170,6 +171,130 @@ export const projects: readonly Project[] = [
       visibility: "private",
       label: "Private repository",
       notice: "Private repository — source access available on request.",
+    },
+    caseStudy: {
+      sections: [
+        {
+          id: "context",
+          kind: "context",
+          eyebrow: "Context",
+          title: "Routine contracts still require careful first-pass review.",
+          paragraphs: [
+            "Mutual NDAs are relatively standard documents, but reviewing them still means checking clauses against an organisation's preferred playbook. A reviewer may need to assess confidentiality periods, governing law, mutual obligations, IP ownership language, residuals clauses, and disclosure exceptions.",
+            "I built this independent prototype to perform a structured first pass, surface relevant evidence, and help a human reviewer focus attention where judgement was needed. The objective was not to automate the lawyer out of the process.",
+          ],
+        },
+        {
+          id: "problem",
+          kind: "problem",
+          eyebrow: "Problem",
+          title: "Not every contract decision should be delegated to the same kind of AI.",
+          paragraphs: [
+            "Some NDA checks, such as a confidentiality period or governing law, are objective enough to express as deterministic playbook rules. Other clauses, including IP ownership, mutuality, residuals, and permitted disclosure, require interpretation of wording and context.",
+            "Using an LLM for every decision would make objective checks unnecessarily probabilistic. Using only rigid rules would struggle with clauses whose meaning depends on context. This led to a hybrid architecture.",
+          ],
+        },
+        {
+          id: "decision",
+          kind: "approach",
+          eyebrow: "Product decision",
+          title: "Deterministic where possible. AI where judgement is useful.",
+          paragraphs: [
+            "The central design decision was to separate the review work. Deterministic playbook checks handle objective policy conditions with predictable outcomes that are easier to test. AI-assisted contextual interpretation is reserved for clauses where wording and surrounding context matter, using structured interpretation rather than unrestricted generation.",
+            "The system combines both paths into a first-pass risk assessment. This division was an engineering choice about where each approach is most reliable and reviewable, rather than a technology checklist.",
+          ],
+        },
+        {
+          id: "workflow",
+          kind: "implementation",
+          eyebrow: "Review workflow",
+          title: "From document upload to an evidence-backed review.",
+          paragraphs: [
+            "The prototype accepts batches of up to 20 PDF contracts, extracts text and facts, applies playbook-based deterministic checks, and uses AI-assisted clause interpretation where context matters. Findings are classified as green, amber, or red and can include supporting evidence and suggested amendment wording where appropriate.",
+            "Matters, sessions, and document version history preserve the review workflow around those findings. The reviewer ultimately chooses whether to approve, require changes, or escalate; those decisions are not made autonomously by the system.",
+          ],
+        },
+        {
+          id: "evidence",
+          kind: "testing",
+          eyebrow: "Explainability",
+          title: "A risk label is not useful without the reasoning behind it.",
+          paragraphs: [
+            "The interface was designed to show more than a colour or score. For relevant findings, it surfaces the clause or evidence supporting the finding, why the playbook or contextual review flagged it, and suggested amendment wording where appropriate.",
+            "The intention is to help the reviewer inspect the system's reasoning and make their own decision, rather than asking them to accept a conclusion without context.",
+          ],
+        },
+        {
+          id: "human-control",
+          kind: "constraints",
+          eyebrow: "Human control",
+          title: "The system stops before the final legal decision.",
+          paragraphs: [
+            "The prototype intentionally performs triage and first-pass analysis only. The reviewer remains responsible for approving the document, requesting changes, escalating the matter, and deciding whether the evidence and suggested wording are appropriate.",
+            "Keeping that final control with the reviewer is a deliberate product decision: it keeps probabilistic outputs within a workflow where the accountable person can inspect, challenge, and act on them.",
+          ],
+        },
+        {
+          id: "state",
+          kind: "architecture",
+          eyebrow: "Workflow design",
+          title: "Contract review is a process, not a single model call.",
+          paragraphs: [
+            "The prototype preserves matters and sessions, contract versions, previous review state, and session recovery rather than treating every upload as an isolated prompt. That state makes it possible to return to a review and understand how a document has changed over time.",
+            "Document files are stored on the local filesystem and SQLite holds metadata. I introduced a storage abstraction so the underlying storage approach could be replaced later, without claiming distributed or production-grade persistence.",
+          ],
+        },
+        {
+          id: "security",
+          kind: "challenges",
+          eyebrow: "Adversarial testing",
+          title: "Contract text has to be treated as untrusted input.",
+          paragraphs: [
+            "Uploaded contracts are external, untrusted documents. The prototype therefore included defensive evaluation around prompt-injection and instruction-jamming-style content embedded in documents, testing whether malicious or misleading instructions could interfere with the intended review behaviour.",
+            "This kind of testing improves confidence in the workflow, but it does not prove the system is secure against every adversarial input. No immunity to prompt injection is claimed.",
+          ],
+        },
+        {
+          id: "evaluation",
+          kind: "testing",
+          eyebrow: "Evaluation",
+          title: "A small evaluation helped test the end-to-end workflow.",
+          paragraphs: [
+            "The latest synthetic evaluation set completed 4/4 test cases end-to-end. This is a very small synthetic evaluation and should not be treated as evidence of production-level accuracy or broad legal reliability.",
+            "Its value was checking that the workflow completed correctly, important playbook checks were surfaced, evidence was presented, and the human-review path remained intact.",
+          ],
+        },
+        {
+          id: "production",
+          kind: "outcome",
+          eyebrow: "Production direction",
+          title: "A useful prototype is still a long way from production legal software.",
+          paragraphs: [
+            "A production deployment would need authentication and role-based access, secure document-retention policies, audit trails, stronger traceability, asynchronous processing or queues, integrations with document or matter-management systems, more robust storage, and substantially broader evaluation.",
+            "It would also require ongoing monitoring of model behaviour and organisational and legal review of the playbook itself. These are future requirements, not capabilities already implemented in the prototype.",
+          ],
+        },
+        {
+          id: "outcome",
+          kind: "outcome",
+          eyebrow: "Outcome",
+          title: "A working prototype for structured first-pass review.",
+          paragraphs: [
+            "The prototype can accept batches of mutual NDA PDFs, apply deterministic playbook checks, use AI for clauses requiring contextual interpretation, classify findings by risk, surface evidence, suggest amendment wording, and preserve matters and document versions.",
+            "It keeps the reviewer responsible for the final outcome. It is a working prototype, not production-ready legal software.",
+          ],
+        },
+        {
+          id: "reflection",
+          kind: "reflection",
+          eyebrow: "Reflection",
+          title: "The strongest AI systems are often deliberately hybrid.",
+          paragraphs: [
+            "This project reinforced that AI should not automatically replace deterministic software. For decisions expressed as clear policy, conventional rules are easier to test and more predictable. AI is most useful where interpretation genuinely depends on language and context.",
+            "The product challenge is deciding where each approach belongs, then designing the workflow so probabilistic outputs remain reviewable by the person responsible for the final decision.",
+          ],
+        },
+      ],
     },
   },
   {

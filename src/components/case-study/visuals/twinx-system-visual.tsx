@@ -4,8 +4,8 @@ export function TwinxSystemVisual() {
   return (
     <figure className="twinx-system-visual">
       <Image
-        src="/images/twinx-system-overview.png"
-        alt="Twinx RAG system overview showing project documents flowing through ingestion, ChromaDB and retrieval into grounded question answering and structured report drafts, with OpenAI-backed and local execution paths."
+        src="/images/ai-knowledge-system-overview.png"
+        alt="Existing system overview from the original client engagement, showing document ingestion, ChromaDB retrieval, grounded question answering, and legacy report-draft material."
         width={1792}
         height={1024}
         sizes="(max-width: 768px) 100vw, 1200px"

@@ -7,7 +7,7 @@ export const experience: readonly ExperienceItem[] = [
     location: "Netherlands",
     dateRange: "Feb 2026 – Apr 2026",
     description:
-      "Contributed to the AI knowledge and reporting assistant featured in Selected Work.",
+      "Contributed to the AI Knowledge Assistant featured in Selected Work.",
   },
   {
     role: "Production Operator",

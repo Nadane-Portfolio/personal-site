@@ -1,4 +1,5 @@
 import type {
+  AboutContent,
   Availability,
   ExternalLink,
   NavigationItem,
@@ -16,6 +17,14 @@ export const availability: Availability = {
   location: "Greater Manchester, UK",
   preference: "Remote preferred",
   opportunities: "Open to hybrid and on-site opportunities around Manchester",
+};
+
+export const aboutContent: AboutContent = {
+  paragraphs: [
+    "I’m a Business Information Technology graduate from the University of Twente, focused on building practical AI and software systems. My experience spans RAG, document analysis, AI evaluation, workflow automation, databases and business systems.",
+    "I enjoy working on problems where the solution is not obvious at the start — understanding how a process works, identifying what is actually slowing people down, and then choosing the right technology to improve it. I’m particularly interested in AI systems that need to be useful outside of a demo: grounded in real data, tested properly, and designed around the people who will use them.",
+  ],
+  process: ["Understand", "Choose", "Build", "Test", "Refine"],
 };
 
 export const contactLinks: readonly ExternalLink[] = [

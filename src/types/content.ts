@@ -17,6 +17,11 @@ export type Availability = {
   opportunities: string;
 };
 
+export type AboutContent = {
+  paragraphs: readonly string[];
+  process: readonly string[];
+};
+
 export type SkillGroup = {
   id: string;
   title: string;

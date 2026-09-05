@@ -1,6 +1,7 @@
 import { AboutSection } from "@/components/home/about-section";
 import { AiPracticeSection } from "@/components/home/ai-practice-section";
 import { BackgroundSection } from "@/components/home/background-section";
+import { ContactSection } from "@/components/home/contact-section";
 import { Hero } from "@/components/home/hero";
 import { HowIWorkSection } from "@/components/home/how-i-work-section";
 import { SkillsSection } from "@/components/home/skills-section";
@@ -16,6 +17,7 @@ export default function Home() {
       <AiPracticeSection />
       <SkillsSection />
       <BackgroundSection />
+      <ContactSection />
     </>
   );
 }

@@ -27,6 +27,11 @@ export const aboutContent: AboutContent = {
   process: ["Understand", "Choose", "Build", "Test", "Refine"],
 };
 
+export const contactContent = {
+  intro:
+    "I’m open to AI product engineering, software engineering and adjacent technical roles where I can work on real problems, build practical systems and keep learning.",
+} as const;
+
 export const contactLinks: readonly ExternalLink[] = [
   {
     label: "Email me",

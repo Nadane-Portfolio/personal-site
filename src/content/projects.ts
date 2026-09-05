@@ -500,8 +500,127 @@ export const projects: readonly Project[] = [
       "Data Normalisation",
       "KPIs",
       "Business Intelligence",
-      "Tableau",
     ],
+    caseStudy: {
+      sections: [
+        {
+          id: "context",
+          kind: "context",
+          eyebrow: "Context",
+          title: "A large operational dataset needed structure before it could become useful.",
+          paragraphs: [
+            "This university team project for Infoplaza involved a large North Sea weather and operational dataset with wind speed, latitude, longitude, forecast-related information, and meteorologist-, customer-, and contract-related fields.",
+            "The original data was difficult to work with directly. The team needed a structure that made operational performance and business relationships easier to analyse without inventing conclusions from a large flat dataset.",
+          ],
+        },
+        {
+          id: "problem",
+          kind: "problem",
+          eyebrow: "Problem",
+          title: "Analysis is only as reliable as the structure underneath it.",
+          paragraphs: [
+            "A large flat or poorly structured dataset makes entity relationships harder to understand, duplicated information harder to avoid, and queries and KPI calculations harder to keep consistent. It also makes it more difficult to connect operational data to customers, contracts, and employees or prepare reliable data for downstream visualisation.",
+            "The project therefore needed more than charts. It needed a relational model first.",
+          ],
+        },
+        {
+          id: "contribution",
+          kind: "role",
+          eyebrow: "My contribution",
+          title: "I focused on the data foundation behind the analysis.",
+          paragraphs: [
+            "I worked on the relational data foundation and analysis, preparing structured data that the wider team could use for further analysis and Tableau visualisation.",
+          ],
+          bullets: [
+            "Worked on database normalisation.",
+            "Split the larger dataset into smaller related tables.",
+            "Helped define relationships between key entities.",
+            "Wrote SQL-based KPIs.",
+            "Contributed to the final business recommendations.",
+          ],
+        },
+        {
+          id: "model",
+          kind: "architecture",
+          eyebrow: "Data model",
+          title: "The relational model connected forecasts, people, customers and contracts.",
+          paragraphs: [
+            "Forecast was a central entity connected to Meteorologist and Customer. The wider relational design also included Employment Contract and Customer Contract entities.",
+            "This structure separated distinct business entities, reduced duplicated information, made relationships explicit, and made SQL analysis and downstream reporting more consistent.",
+          ],
+        },
+        {
+          id: "normalisation",
+          kind: "approach",
+          eyebrow: "Database design",
+          title: "Normalisation turned one difficult dataset into smaller, meaningful tables.",
+          paragraphs: [
+            "The original data was reorganised into related tables rather than treated as one large dataset. The aim was practical: reduce redundancy, create clearer entity boundaries, improve maintainability, and support cleaner joins.",
+            "That made analytical queries easier to reason about while keeping the model grounded in the operational and commercial relationships represented by the data.",
+          ],
+        },
+        {
+          id: "kpis",
+          kind: "implementation",
+          eyebrow: "Analysis",
+          title: "SQL turned the relational model into operational KPIs.",
+          paragraphs: [
+            "Once the database structure was in place, I used SQL to calculate KPIs and explore patterns in the data. The key benefit was being able to query relationships across forecasts, meteorologists, customers, and contracts instead of analysing disconnected fields.",
+            "The relational model could then be translated into useful analysis without inventing KPI values or treating a visualisation as the analytical foundation.",
+          ],
+        },
+        {
+          id: "team",
+          kind: "role",
+          eyebrow: "Team workflow",
+          title: "The structured data became the foundation for the wider team's visual analysis.",
+          paragraphs: [
+            "I worked on the relational model and SQL analysis. The wider team used the prepared data to build the Tableau dashboard, while other team members worked on predictive and Random Forest analysis.",
+            "Those Tableau and Random Forest components were wider team contributions, not my individual deliverables. The project was collaborative by design.",
+          ],
+        },
+        {
+          id: "recommendations",
+          kind: "outcome",
+          eyebrow: "Business recommendations",
+          title: "The technical work had to end in business decisions, not just queries.",
+          paragraphs: [
+            "I also contributed to the final business recommendations. The analysis informed discussion of seasonal patterns in the operational and weather data, workload considerations, and performance or accuracy considerations.",
+            "It also highlighted a missing or unclear fixed-fee revenue field and related contract-data questions, pointing to the value of clearer contract and database fields. These were recommendations from the project, not claims that they were implemented.",
+          ],
+        },
+        {
+          id: "quality",
+          kind: "challenges",
+          eyebrow: "Data quality",
+          title: "The model also exposed where the data structure itself needed improvement.",
+          paragraphs: [
+            "Structuring the data made inconsistencies and unclear fields easier to identify. Contract and revenue information, for example, can be difficult to interpret when fields are missing or their meaning is unclear.",
+            "Better data modelling does not only support analysis; it can reveal where the underlying business data model needs refinement. I did not claim responsibility for changing the source systems themselves.",
+          ],
+        },
+        {
+          id: "outcome",
+          kind: "outcome",
+          eyebrow: "Outcome",
+          title: "A clearer data foundation for analysis and business reporting.",
+          paragraphs: [
+            "The project produced a normalised relational data model, linked business entities, SQL-based KPI analysis, structured data suitable for downstream visualisation, and business recommendations informed by that analysis.",
+            "The Tableau visualisation was created by the wider team. This was a university project, not a production deployment claim.",
+          ],
+        },
+        {
+          id: "reflection",
+          kind: "reflection",
+          eyebrow: "Reflection",
+          title: "Good analytics often starts long before the dashboard.",
+          paragraphs: [
+            "This project reinforced that useful business intelligence depends on the quality of the underlying data model. A dashboard can only be as reliable as the structure, relationships, and definitions behind it.",
+            "The most valuable part for me was turning a large operational dataset into a relational structure that supported consistent SQL analysis and helped the team connect technical findings to business recommendations. It strengthened my understanding of the connection between database design, analytical queries, business requirements, and downstream reporting.",
+          ],
+        },
+      ],
+    },
   },
   {
     id: "solarmotion",

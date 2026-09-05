@@ -22,6 +22,26 @@ export type AboutContent = {
   process: readonly string[];
 };
 
+export type WorkPrinciple = {
+  number: string;
+  title: string;
+  description: string;
+};
+
+export type ApproachContent = {
+  intro: string;
+  principles: readonly WorkPrinciple[];
+};
+
+export type AiPracticeContent = {
+  statement: string;
+  helpsWith: readonly string[];
+  responsibility: readonly string[];
+  operatingPrinciples: readonly string[];
+  workingLoop: readonly string[];
+  toolsLine: string;
+};
+
 export type SkillGroup = {
   id: string;
   title: string;

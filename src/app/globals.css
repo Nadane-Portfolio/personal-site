@@ -1083,6 +1083,190 @@ canvas {
   line-height: 1.1;
 }
 
+.how-i-work {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--section-space);
+}
+
+.how-i-work__grid {
+  display: grid;
+  gap: 3rem;
+}
+
+.how-i-work__intro .eyebrow {
+  margin: 0 0 1rem;
+}
+
+.how-i-work__summary {
+  max-width: 34rem;
+  margin: 1.5rem 0 0;
+}
+
+.work-principles {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.work-principle {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 1rem;
+  border-top: 1px solid var(--color-border);
+  padding-block: 1.5rem;
+}
+
+.work-principle:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.work-principle__number {
+  padding-top: 0.25rem;
+  color: var(--color-accent);
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.work-principle h3 {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+  font-weight: 560;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+.work-principle p {
+  max-width: 40rem;
+  margin: 0.625rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.ai-practice {
+  background: var(--color-contrast);
+  color: var(--color-surface);
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.ai-practice__inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-practice__header {
+  max-width: 52rem;
+}
+
+.ai-practice .eyebrow,
+.ai-practice .technical-label {
+  color: var(--color-contrast-muted);
+}
+
+.ai-practice__header .eyebrow {
+  margin: 0 0 1rem;
+}
+
+.ai-practice__header h2 {
+  max-width: 20ch;
+  margin: 0;
+  color: var(--color-surface);
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
+  font-weight: 520;
+  letter-spacing: -0.055em;
+  line-height: 1.05;
+}
+
+.ai-practice__columns {
+  display: grid;
+  gap: 2rem;
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.ai-practice__column {
+  border-top: 1px solid rgb(183 192 207 / 0.3);
+  padding-top: 1rem;
+}
+
+.ai-practice__column h3 {
+  margin: 0;
+  color: var(--color-surface);
+  font-size: 1rem;
+  font-weight: 560;
+  letter-spacing: -0.015em;
+}
+
+.ai-practice__column ul,
+.ai-practice__operating ul,
+.ai-practice__loop ol {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ai-practice__column li {
+  padding-block: 0.5rem;
+  border-bottom: 1px solid rgb(183 192 207 / 0.16);
+  color: var(--color-contrast-muted);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.ai-practice__operating {
+  max-width: 58rem;
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+  padding-top: 1rem;
+  border-top: 1px solid rgb(183 192 207 / 0.3);
+}
+
+.ai-practice__operating li {
+  max-width: 48rem;
+  margin-top: 0.875rem;
+  color: var(--color-contrast-muted);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.ai-practice__loop {
+  margin-top: 2rem;
+}
+
+.ai-practice__loop ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  max-width: 62rem;
+}
+
+.ai-practice__loop li {
+  color: var(--color-surface);
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.ai-practice__loop li:not(:last-child)::after {
+  margin-left: 0.75rem;
+  color: var(--color-accent);
+  content: "→";
+}
+
+.ai-practice__tools {
+  max-width: 50rem;
+  margin: 2rem 0 0;
+  color: var(--color-contrast-muted);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
 @media (min-width: 40rem) {
   .content-container,
   .content-container--wide {
@@ -1118,6 +1302,11 @@ canvas {
 
   .more-work__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ai-practice__columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 7vw, 6rem);
   }
 }
 
@@ -1166,6 +1355,17 @@ canvas {
 
   .project-diagram {
     min-height: 19rem;
+  }
+
+  .how-i-work__grid {
+    grid-template-columns: minmax(15rem, 0.75fr) minmax(0, 1fr);
+    gap: clamp(3rem, 9vw, 9rem);
+  }
+
+  .how-i-work__intro {
+    position: sticky;
+    top: calc(4.25rem + 2rem);
+    align-self: start;
   }
 }
 

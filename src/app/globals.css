@@ -1706,6 +1706,23 @@ canvas {
   padding-left: 1.25rem;
 }
 
+.case-study-section__visual {
+  min-width: 0;
+  margin-top: 0.5rem;
+}
+
+.twinx-system-visual {
+  margin: clamp(3rem, 6vw, 5rem) 0;
+}
+
+.twinx-system-visual__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+}
+
 .project-pagination {
   display: grid;
   gap: 1rem;
@@ -1901,6 +1918,10 @@ canvas {
   .case-study-section {
     grid-template-columns: minmax(13rem, 0.58fr) minmax(0, 1fr);
     gap: clamp(3rem, 8vw, 8rem);
+  }
+
+  .case-study-section__visual {
+    grid-column: 1 / -1;
   }
 }
 

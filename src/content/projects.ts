@@ -81,6 +81,7 @@ export const projects: readonly Project[] = [
           kind: "architecture",
           eyebrow: "System design",
           title: "A RAG assistant built around the project documents.",
+          visual: "twinx-system",
           paragraphs: [
             "The working system synchronised project documents from Dropbox, extracted text, split it into chunks, and created embeddings for retrieval in ChromaDB. When a user asked a question, relevant project context was retrieved and supplied to the model alongside conversation context.",
             "The Chainlit interface supported grounded responses that could reference source filenames, helping users trace an answer back to the relevant project material. The same retrieved context also supported structured first-draft report generation.",

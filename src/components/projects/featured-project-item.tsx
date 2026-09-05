@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import type { Project } from "@/types/content";
 
 import { ProjectVisual } from "./project-visual";
@@ -44,6 +46,12 @@ export function FeaturedProjectItem({
         {project.source ? (
           <p className="featured-project__source">{project.source.notice}</p>
         ) : null}
+        <Link
+          className="featured-project__link"
+          href={`/work/${project.slug}`}
+        >
+          Read case study <span aria-hidden="true">→</span>
+        </Link>
       </div>
 
       <div className="featured-project__visual">

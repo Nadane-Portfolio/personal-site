@@ -6,6 +6,8 @@ export const experience: readonly ExperienceItem[] = [
     organisation: "Twinx B.V.",
     location: "Netherlands",
     dateRange: "Feb 2026 – Apr 2026",
+    description:
+      "Contributed to the AI knowledge and reporting assistant featured in Selected Work.",
   },
   {
     role: "Production Operator",

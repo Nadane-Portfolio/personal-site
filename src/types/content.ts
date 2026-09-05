@@ -45,6 +45,7 @@ export type AiPracticeContent = {
 export type SkillGroup = {
   id: string;
   title: string;
+  description: string;
   emphasis: "primary" | "standard";
   skills: readonly string[];
 };

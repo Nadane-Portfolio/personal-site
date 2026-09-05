@@ -4,6 +4,8 @@ export const skillGroups: readonly SkillGroup[] = [
   {
     id: "ai-llm-systems",
     title: "AI & LLM Systems",
+    description:
+      "Building and evaluating AI-assisted systems using retrieval, APIs and local models.",
     emphasis: "primary",
     skills: [
       "RAG",
@@ -25,6 +27,8 @@ export const skillGroups: readonly SkillGroup[] = [
   {
     id: "software-development",
     title: "Software Development",
+    description:
+      "General-purpose programming, web development, APIs, testing and version-controlled team workflows.",
     emphasis: "standard",
     skills: [
       "Python",
@@ -45,6 +49,8 @@ export const skillGroups: readonly SkillGroup[] = [
   {
     id: "data-backend",
     title: "Data & Backend",
+    description:
+      "Relational data modelling, SQL, backend integration and analysis-oriented systems.",
     emphasis: "standard",
     skills: [
       "SQL",
@@ -60,6 +66,8 @@ export const skillGroups: readonly SkillGroup[] = [
   {
     id: "business-product-systems",
     title: "Business & Product Systems",
+    description:
+      "Connecting technical implementation with workflows, requirements and operational systems.",
     emphasis: "standard",
     skills: [
       "Odoo",

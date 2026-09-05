@@ -108,7 +108,7 @@ export type CaseStudySection = {
   paragraphs?: readonly string[];
   bullets?: readonly string[];
   mediaIds?: readonly string[];
-  visual?: "twinx-system";
+  visual?: "ai-knowledge-system";
 };
 
 export type CaseStudyContent = {

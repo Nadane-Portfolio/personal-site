@@ -6,24 +6,24 @@ type ProjectVisualProps = {
 
 export function ProjectVisual({ projectId }: ProjectVisualProps) {
   switch (projectId) {
-    case "twinx":
+    case "ai-knowledge-assistant":
       return (
-        <div aria-hidden="true" className="project-diagram project-diagram--twinx">
+        <div aria-hidden="true" className="project-diagram project-diagram--ai-knowledge">
           <span className="project-diagram__annotation">Shared knowledge layer</span>
-          <div className="twinx-visual__sources">
+          <div className="ai-knowledge-visual__sources">
             <span>Project documents</span>
             <span>Dropbox</span>
           </div>
-          <div className="twinx-visual__knowledge">
+          <div className="ai-knowledge-visual__knowledge">
             <span>Ingestion</span>
             <span>Indexed knowledge</span>
           </div>
-          <div className="twinx-visual__retrieval">Retrieval</div>
-          <div className="twinx-visual__execution">
+          <div className="ai-knowledge-visual__retrieval">Retrieval</div>
+          <div className="ai-knowledge-visual__execution">
             <span>Local AI</span>
             <span>OpenAI</span>
           </div>
-          <div className="twinx-visual__outputs">
+          <div className="ai-knowledge-visual__outputs">
             <span>Grounded Q&amp;A</span>
             <span>Source traceability</span>
           </div>

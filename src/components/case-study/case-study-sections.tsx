@@ -1,12 +1,12 @@
 import type { CaseStudyContent } from "@/types/content";
-import { TwinxSystemVisual } from "@/components/case-study/visuals/twinx-system-visual";
+import { AiKnowledgeSystemVisual } from "@/components/case-study/visuals/ai-knowledge-system-visual";
 
 type CaseStudySectionsProps = {
   caseStudy?: CaseStudyContent;
 };
 
 const caseStudyVisuals = {
-  "twinx-system": TwinxSystemVisual,
+  "ai-knowledge-system": AiKnowledgeSystemVisual,
 } as const;
 
 export function CaseStudySections({ caseStudy }: CaseStudySectionsProps) {

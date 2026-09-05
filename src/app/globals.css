@@ -706,7 +706,7 @@ canvas {
   text-transform: uppercase;
 }
 
-.project-diagram--twinx {
+.project-diagram--ai-knowledge {
   display: grid;
   min-height: 18rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -718,27 +718,27 @@ canvas {
   box-shadow: 0 8px 24px rgb(37 99 217 / 0.07);
 }
 
-.project-diagram--twinx .project-diagram__annotation {
+.project-diagram--ai-knowledge .project-diagram__annotation {
   grid-column: 1 / -1;
 }
 
-.twinx-visual__sources,
-.twinx-visual__knowledge,
-.twinx-visual__execution,
-.twinx-visual__outputs {
+.ai-knowledge-visual__sources,
+.ai-knowledge-visual__knowledge,
+.ai-knowledge-visual__execution,
+.ai-knowledge-visual__outputs {
   display: grid;
   gap: 0.5rem;
 }
 
-.twinx-visual__sources {
+.ai-knowledge-visual__sources {
   grid-template-columns: 1fr;
 }
 
-.twinx-visual__sources span,
-.twinx-visual__knowledge span,
-.twinx-visual__execution span,
-.twinx-visual__outputs span,
-.twinx-visual__retrieval {
+.ai-knowledge-visual__sources span,
+.ai-knowledge-visual__knowledge span,
+.ai-knowledge-visual__execution span,
+.ai-knowledge-visual__outputs span,
+.ai-knowledge-visual__retrieval {
   display: flex;
   min-height: 2.25rem;
   align-items: center;
@@ -751,11 +751,11 @@ canvas {
   line-height: 1.3;
 }
 
-.twinx-visual__knowledge {
+.ai-knowledge-visual__knowledge {
   grid-template-columns: 1fr;
 }
 
-.twinx-visual__retrieval {
+.ai-knowledge-visual__retrieval {
   grid-column: 1 / -1;
   justify-content: center;
   border-color: var(--color-accent);
@@ -763,17 +763,17 @@ canvas {
   color: var(--color-accent-hover);
 }
 
-.twinx-visual__execution,
-.twinx-visual__outputs {
+.ai-knowledge-visual__execution,
+.ai-knowledge-visual__outputs {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-column: 1 / -1;
 }
 
-.twinx-visual__execution span {
+.ai-knowledge-visual__execution span {
   border-style: dashed;
 }
 
-.twinx-visual__outputs span {
+.ai-knowledge-visual__outputs span {
   border-color: #ccd9f3;
 }
 
@@ -1711,11 +1711,11 @@ canvas {
   margin-top: 0.5rem;
 }
 
-.twinx-system-visual {
+.ai-knowledge-system-visual {
   margin: clamp(3rem, 6vw, 5rem) 0;
 }
 
-.twinx-system-visual__image {
+.ai-knowledge-system-visual__image {
   display: block;
   width: 100%;
   height: auto;

@@ -63,7 +63,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <article className="case-study">
       <CaseStudyHeader project={project} />
-      <CaseStudySummary project={project} />
+      {project.showCaseStudySummary !== false ? (
+        <CaseStudySummary project={project} />
+      ) : null}
       <CaseStudySections caseStudy={project.caseStudy} />
       <ProjectPagination
         previousProject={previousProject}

@@ -126,6 +126,7 @@ export type Project = {
   categories: readonly string[];
   homepageFeatured: boolean;
   caseStudyAvailable?: boolean;
+  showCaseStudySummary?: boolean;
   displayOrder: number;
   summary: string;
   homepageSummary?: string;

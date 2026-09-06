@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Project } from "@/types/content";
 
 type ProjectVisualProps = {
@@ -31,20 +32,14 @@ export function ProjectVisual({ projectId }: ProjectVisualProps) {
       );
     case "legal-first-pass":
       return (
-        <div aria-hidden="true" className="project-diagram project-diagram--legal">
-          <div className="legal-visual__intake">
-            <span>Mutual NDA</span>
-            <span>Structured extraction</span>
-          </div>
-          <div className="legal-visual__paths">
-            <span>Deterministic playbook checks</span>
-            <span>AI contextual review</span>
-          </div>
-          <div className="legal-visual__triage">Combined risk triage</div>
-          <div className="legal-visual__decision">Lawyer decision</div>
-          <span className="project-diagram__annotation legal-visual__annotation">
-            Rules + judgement + oversight
-          </span>
+        <div className="project-visual-image">
+          <Image
+            src="/images/legal-first-pass-workflow.png"
+            alt="Legal First Pass workflow showing a mutual NDA moving through structured extraction, deterministic playbook checks and AI contextual review, followed by combined issue triage, risk findings and final lawyer review."
+            width={1536}
+            height={1024}
+            className="project-visual-image__image"
+          />
         </div>
       );
     case "rag-security-thesis":

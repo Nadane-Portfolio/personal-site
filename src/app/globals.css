@@ -722,6 +722,18 @@ canvas {
   grid-column: 1 / -1;
 }
 
+.project-visual-image {
+  width: 120%;
+  max-width: 44rem;
+  margin-left: -20%;
+}
+
+.project-visual-image__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .ai-knowledge-visual__sources,
 .ai-knowledge-visual__knowledge,
 .ai-knowledge-visual__execution,

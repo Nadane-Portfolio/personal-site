@@ -1,6 +1,9 @@
-import { featuredProjects, supportingProjects } from "@/content/projects";
-import { CompactProjectItem } from "@/components/projects/compact-project-item";
+import {
+  homepageFeaturedProjects,
+  supportingProjects,
+} from "@/content/projects";
 import { FeaturedProjectItem } from "@/components/projects/featured-project-item";
+import { SupportingWorkCarousel } from "@/components/home/supporting-work-carousel";
 
 export function WorkSection() {
   return (
@@ -18,7 +21,7 @@ export function WorkSection() {
         </header>
 
         <div className="featured-projects">
-          {featuredProjects.map((project, index) => (
+          {homepageFeaturedProjects.map((project, index) => (
             <FeaturedProjectItem
               key={project.id}
               project={project}
@@ -32,11 +35,7 @@ export function WorkSection() {
             <p className="eyebrow">More work</p>
             <h3 id="more-work-title">Supporting product and software work.</h3>
           </div>
-          <div className="more-work__grid">
-            {supportingProjects.map((project) => (
-              <CompactProjectItem key={project.id} project={project} />
-            ))}
-          </div>
+          <SupportingWorkCarousel projects={supportingProjects} />
         </section>
       </div>
     </section>

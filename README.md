@@ -64,9 +64,7 @@ The project gave me practical experience working in a larger software system rat
 
 A university product-development and online-business project built around a modular solar retrofit concept for e-bikes.
 
-My main technical contribution was the **Odoo ERP implementation**. I built and configured the e-commerce website and product catalogue, set up products and bills of materials, linked suppliers and inventory, and implemented stock management with automated reordering. I also configured the customer-facing ordering and marketing flow, including the newsletter setup.
-
-This turned the project from a product concept into a connected digital business system spanning e-commerce, inventory, suppliers and order processing.
+I worked on technical product research and calculations for compatible solar-panel and battery combinations, revised the project's decision-making analysis, and helped implement the product in Odoo through product configuration, website content and e-commerce setup. I also served as project manager during part of the project.
 
 **Project website:** [edu-solarmotionv0.odoo.com](https://edu-solarmotionv0.odoo.com/)
 
@@ -169,18 +167,16 @@ npm run build
 
 The portfolio is deployed on **Vercel** and connected to the `main` branch of this repository.
 
-When I push a new commit to `main`, Vercel automatically builds and deploys the updated site.
-
 **Live site:** [andrei-nadane-portfolio.vercel.app](https://andrei-nadane-portfolio.vercel.app/)
 
 ## Contact
 
 I'm open to AI product engineering, software engineering and adjacent technical opportunities.
 
-**Andrei George Nadane**  
-AI Product Engineer  
+**Andrei George Nadane**
+AI Product Engineer
 Stockport, Greater Manchester, UK
 
-Email: [a.g.nadane@gmail.com](mailto:a.g.nadane@gmail.com)  
-LinkedIn: [linkedin.com/in/andrei-george-nadane](https://www.linkedin.com/in/andrei-george-nadane/)  
+Email: [a.g.nadane@gmail.com](mailto:a.g.nadane@gmail.com)
+LinkedIn: [linkedin.com/in/andrei-george-nadane](https://www.linkedin.com/in/andrei-george-nadane/)
 GitHub: [github.com/Nadane-Portfolio](https://github.com/Nadane-Portfolio)

@@ -16,7 +16,9 @@ export function CompactProjectItem({ project }: CompactProjectItemProps) {
         {project.title}
       </h4>
       <p className="compact-project__subtitle">{project.subtitle}</p>
-      <p className="compact-project__summary">{project.summary}</p>
+      <p className="compact-project__summary">
+        {project.homepageSummary ?? project.summary}
+      </p>
       <p className="compact-project__role">
         <span className="meta-label">Contribution</span>
         {project.role}

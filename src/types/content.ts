@@ -124,9 +124,11 @@ export type Project = {
   kind: string;
   duration?: string;
   categories: readonly string[];
-  featured: boolean;
+  homepageFeatured: boolean;
+  caseStudyAvailable?: boolean;
   displayOrder: number;
   summary: string;
+  homepageSummary?: string;
   role: string;
   contributions: readonly string[];
   attributionNote?: string;

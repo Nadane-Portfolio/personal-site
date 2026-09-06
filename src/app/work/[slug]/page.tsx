@@ -5,17 +5,17 @@ import { CaseStudyHeader } from "@/components/case-study/case-study-header";
 import { CaseStudySections } from "@/components/case-study/case-study-sections";
 import { CaseStudySummary } from "@/components/case-study/case-study-summary";
 import { ProjectPagination } from "@/components/case-study/project-pagination";
-import { featuredProjects, getProjectBySlug } from "@/content/projects";
+import { caseStudyProjects, getProjectBySlug } from "@/content/projects";
 import type { Project } from "@/types/content";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-function getFeaturedProject(slug: string): Project | undefined {
+function getCaseStudyProject(slug: string): Project | undefined {
   const project = getProjectBySlug(slug);
 
-  return project?.featured ? project : undefined;
+  return project?.caseStudyAvailable && project.caseStudy ? project : undefined;
 }
 
 function getMetadataDescription(summary: string): string {
@@ -27,14 +27,14 @@ function getMetadataDescription(summary: string): string {
 }
 
 export function generateStaticParams() {
-  return featuredProjects.map((project) => ({ slug: project.slug }));
+  return caseStudyProjects.map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getFeaturedProject(slug);
+  const project = getCaseStudyProject(slug);
 
   if (!project) {
     notFound();
@@ -48,17 +48,17 @@ export async function generateMetadata({
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = getFeaturedProject(slug);
+  const project = getCaseStudyProject(slug);
 
   if (!project) {
     notFound();
   }
 
-  const projectIndex = featuredProjects.findIndex(
-    (featuredProject) => featuredProject.slug === project.slug,
+  const projectIndex = caseStudyProjects.findIndex(
+    (caseStudyProject) => caseStudyProject.slug === project.slug,
   );
-  const previousProject = featuredProjects[projectIndex - 1];
-  const nextProject = featuredProjects[projectIndex + 1];
+  const previousProject = caseStudyProjects[projectIndex - 1];
+  const nextProject = caseStudyProjects[projectIndex + 1];
 
   return (
     <article className="case-study">

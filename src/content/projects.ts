@@ -9,10 +9,13 @@ export const projects: readonly Project[] = [
     kind: "Client project",
     duration: "10 weeks",
     categories: ["AI", "RAG"],
-    featured: true,
+    homepageFeatured: true,
+    caseStudyAvailable: true,
     displayOrder: 1,
     summary:
       "A reusable RAG assistant for synchronising Dropbox documents and answering questions with grounded, traceable context. It originated in a real client project and was later sanitised for reuse, with OpenAI-backed and local execution paths retained.",
+    homepageSummary:
+      "A configurable RAG assistant that grew out of a 10-week university internship project with Twinx B.V., a Dutch project and subsidy consultancy. I researched how AI could reduce friction in document-heavy workflows and worked on a system that synchronises Dropbox documents, retrieves grounded context through ChromaDB, and supports question answering through Chainlit. When privacy became a constraint, I also worked on a local execution path using Sentence Transformers and Ollama. The version shown here was later sanitised and adapted into a reusable assistant.",
     role: "AI & Innovation Support Intern",
     contributions: [
       "Researched possible approaches for the open-ended brief",
@@ -150,10 +153,13 @@ export const projects: readonly Project[] = [
     subtitle: "AI-Assisted Contract Review",
     kind: "Independent project",
     categories: ["AI", "Legal workflow"],
-    featured: true,
+    homepageFeatured: true,
+    caseStudyAvailable: true,
     displayOrder: 2,
     summary:
       "Built a first-pass review prototype for routine mutual NDAs that combines deterministic playbook checks with AI for clauses requiring contextual interpretation. The system triages contracts by risk, shows supporting evidence and suggested wording, preserves matter/version history, and keeps the lawyer responsible for the final decision.",
+    homepageSummary:
+      "An independent prototype for structured first-pass review of routine mutual NDAs. I deliberately combined deterministic playbook checks for objective rules with AI-assisted interpretation for clauses that depend on context. The system surfaces risk, evidence and suggested wording while preserving matter and version history, with the reviewer retaining the final decision. I also tested reliability and adversarial behaviour around untrusted contract content.",
     role: "Independent project builder",
     contributions: [
       "Built the first-pass review prototype for routine mutual NDAs",
@@ -304,10 +310,13 @@ export const projects: readonly Project[] = [
     subtitle: "Poisoning Attacks on Cyber Threat Intelligence",
     kind: "Bachelor's thesis",
     categories: ["AI Security", "RAG Evaluation"],
-    featured: true,
+    homepageFeatured: true,
+    caseStudyAvailable: true,
     displayOrder: 3,
     summary:
       "Built a controlled cybersecurity RAG testbed to measure how poisoned knowledge affects both retrieval and final model behaviour. Evaluated five attack types using Qwen and Llama across different poison budgets and retrieval depths, separating whether malicious content was retrieved from whether it actually changed the answer.",
+    homepageSummary:
+      "My Bachelor's thesis at the University of Twente explored poisoning attacks against RAG systems using cyber threat intelligence data. I built a controlled testbed that separately measured whether poisoned content entered retrieved context and whether it actually changed the model's final answer. The results showed that retrieval compromise does not automatically mean answer compromise, and that answer-model behaviour can strongly influence the outcome.",
     role: "Bachelor's thesis researcher",
     contributions: [
       "Built a controlled cybersecurity RAG testbed",
@@ -482,10 +491,12 @@ export const projects: readonly Project[] = [
     subtitle: "Data Modelling & Business Intelligence",
     kind: "Company project",
     categories: ["Data", "SQL", "Business Intelligence"],
-    featured: true,
+    homepageFeatured: false,
     displayOrder: 4,
     summary:
       "Turned a large operational weather dataset into a structured relational model covering forecasts, meteorologists, customers, and contracts. I worked on database normalisation, SQL-based KPIs, and the final business recommendations, while the wider team used the prepared data to build the Tableau dashboard.",
+    homepageSummary:
+      "A university team project for Dutch weather-intelligence company Infoplaza. I helped turn a large North Sea weather and operational dataset into a clearer relational structure by normalising the data, splitting it into linked business entities, and writing SQL-based KPI queries. I also contributed to the final business recommendations, while the wider team used the prepared data for Tableau visualisation and additional analysis.",
     role: "Data modelling, KPI, and business-recommendation contributor",
     contributions: [
       "Worked on relational database normalisation",
@@ -500,6 +511,8 @@ export const projects: readonly Project[] = [
       "Data Normalisation",
       "KPIs",
       "Business Intelligence",
+      "Tableau",
+      "DBeaver",
     ],
     caseStudy: {
       sections: [
@@ -629,10 +642,12 @@ export const projects: readonly Project[] = [
     subtitle: "Odoo ERP & E-Commerce Prototype",
     kind: "Team project",
     categories: ["ERP", "E-commerce", "Product"],
-    featured: false,
+    homepageFeatured: false,
     displayOrder: 5,
     summary:
       "Focused on the Odoo implementation, product configuration, and technical product research, including calculations for compatible solar-panel and battery combinations, while also serving as project manager during part of the project.",
+    homepageSummary:
+      "A university product-development and online-business project built around a modular solar retrofit concept for e-bikes. My main technical contribution was the Odoo ERP implementation: I configured the e-commerce site and product catalogue, bills of materials, suppliers, inventory, stock management, automated reordering, ordering flows and newsletter functionality. The result connected the product concept to a working digital business system.",
     role: "Odoo implementation, technical research, and project-management contributor",
     contributions: [
       "Focused on Odoo implementation and product configuration",
@@ -654,10 +669,12 @@ export const projects: readonly Project[] = [
     subtitle: "Enterprise Dashboard Application",
     kind: "Team project",
     categories: ["Frontend", "Software Engineering"],
-    featured: false,
+    homepageFeatured: false,
     displayOrder: 6,
     summary:
       "Worked primarily on the frontend of an enterprise data-management application for creating and sharing dashboards while staying involved with wider application integration.",
+    homepageSummary:
+      "A team project connected to Dutch cloud-business-software company ActFact. We worked on an enterprise data-management application for creating and sharing dashboards with different users and permissions. My contribution was mainly on the frontend, while I stayed involved with wider application integration so the user-facing work fitted correctly with the rest of the system.",
     role: "Frontend and application-integration contributor",
     contributions: [
       "Worked primarily on the frontend of the enterprise data-management application",
@@ -677,10 +694,16 @@ export const projects: readonly Project[] = [
   },
 ];
 
-export const featuredProjects = projects.filter((project) => project.featured);
+export const homepageFeaturedProjects = projects.filter(
+  (project) => project.homepageFeatured,
+);
 
 export const supportingProjects = projects.filter(
-  (project) => !project.featured,
+  (project) => !project.homepageFeatured,
+);
+
+export const caseStudyProjects = projects.filter(
+  (project) => project.caseStudyAvailable && project.caseStudy,
 );
 
 export function getProjectBySlug(slug: string): Project | undefined {

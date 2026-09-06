@@ -34,7 +34,9 @@ export function FeaturedProjectItem({
           {project.title}
         </h3>
         <p className="featured-project__subtitle">{project.subtitle}</p>
-        <p className="featured-project__summary">{project.summary}</p>
+        <p className="featured-project__summary">
+          {project.homepageSummary ?? project.summary}
+        </p>
         <p className="featured-project__role">
           <span className="meta-label">Role</span>
           {project.role}

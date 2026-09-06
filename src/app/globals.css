@@ -1853,14 +1853,14 @@ canvas {
   }
 
 .hero-system-visual {
-  width: 150%;
-  max-width: 46rem;
+  width: 145%;
+  max-width: 100rem;
   margin-left: -25%;
 }
 
 .hero-system-visual__image {
   display: block;
-  width: 100%;
+  width: 90%;
   height: auto;
 }
 

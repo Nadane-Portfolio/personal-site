@@ -24,7 +24,9 @@ export function SupportingWorkCarousel({
         direction === "next"
           ? scroller.clientWidth * 0.8
           : -scroller.clientWidth * 0.8,
-      behavior: "smooth",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
     });
   }
 

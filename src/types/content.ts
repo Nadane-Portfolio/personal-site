@@ -88,6 +88,15 @@ export type ProjectMedia =
       caption?: string;
     };
 
+export type CaseStudyGallerySlide = {
+  src: string;
+  title: string;
+  caption: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
 export type CaseStudySection = {
   id: string;
   kind:
@@ -108,7 +117,7 @@ export type CaseStudySection = {
   paragraphs?: readonly string[];
   bullets?: readonly string[];
   mediaIds?: readonly string[];
-  visual?: "ai-knowledge-system";
+  gallery?: readonly CaseStudyGallerySlide[];
 };
 
 export type CaseStudyContent = {

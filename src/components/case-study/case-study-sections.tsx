@@ -1,13 +1,9 @@
 import type { CaseStudyContent } from "@/types/content";
-import { AiKnowledgeSystemVisual } from "@/components/case-study/visuals/ai-knowledge-system-visual";
+import { CaseStudyGallery } from "@/components/case-study/case-study-gallery";
 
 type CaseStudySectionsProps = {
   caseStudy?: CaseStudyContent;
 };
-
-const caseStudyVisuals = {
-  "ai-knowledge-system": AiKnowledgeSystemVisual,
-} as const;
 
 export function CaseStudySections({ caseStudy }: CaseStudySectionsProps) {
   if (!caseStudy?.sections?.length) {
@@ -28,8 +24,6 @@ type CaseStudySectionProps = {
 };
 
 function CaseStudySection({ section }: CaseStudySectionProps) {
-  const Visual = section.visual ? caseStudyVisuals[section.visual] : null;
-
   return (
     <section
       className="case-study-section"
@@ -54,9 +48,9 @@ function CaseStudySection({ section }: CaseStudySectionProps) {
         ) : null}
       </div>
 
-      {Visual ? (
+      {section.gallery?.length ? (
         <div className="case-study-section__visual">
-          <Visual />
+          <CaseStudyGallery slides={section.gallery} />
         </div>
       ) : null}
     </section>

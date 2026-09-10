@@ -9,62 +9,42 @@ export function ProjectVisual({ projectId }: ProjectVisualProps) {
   switch (projectId) {
     case "ai-knowledge-assistant":
       return (
-        <div aria-hidden="true" className="project-diagram project-diagram--ai-knowledge">
-          <span className="project-diagram__annotation">Shared knowledge layer</span>
-          <div className="ai-knowledge-visual__sources">
-            <span>Project documents</span>
-            <span>Dropbox</span>
-          </div>
-          <div className="ai-knowledge-visual__knowledge">
-            <span>Ingestion</span>
-            <span>Indexed knowledge</span>
-          </div>
-          <div className="ai-knowledge-visual__retrieval">Retrieval</div>
-          <div className="ai-knowledge-visual__execution">
-            <span>Local AI</span>
-            <span>OpenAI</span>
-          </div>
-          <div className="ai-knowledge-visual__outputs">
-            <span>Grounded Q&amp;A</span>
-            <span>Source traceability</span>
-          </div>
-        </div>
+        <figure className="ai-knowledge-project-photo">
+          <Image
+            src="/images/ai_assistant_home.webp"
+            alt="Software development environment representing the document AI assistant implementation."
+            width={4288}
+            height={2848}
+            sizes="(max-width: 768px) 100vw, 46vw"
+            className="ai-knowledge-project-photo__image"
+          />
+        </figure>
       );
     case "legal-first-pass":
       return (
-        <div className="project-visual-image">
+        <figure className="project-visual-image">
           <Image
-            src="/images/legal-first-pass-workflow.png"
-            alt="Legal First Pass workflow showing a mutual NDA moving through structured extraction, deterministic playbook checks and AI contextual review, followed by combined issue triage, risk findings and final lawyer review."
-            width={1536}
-            height={1024}
+            src="/images/legal_first_pass_home.webp"
+            alt="Contract documents being reviewed, representing the Legal First Pass contract review workflow."
+            width={6240}
+            height={4160}
+            sizes="(max-width: 768px) 100vw, 46vw"
             className="project-visual-image__image"
           />
-        </div>
+        </figure>
       );
     case "rag-security-thesis":
       return (
-        <div aria-hidden="true" className="project-diagram project-diagram--thesis">
-          <div className="thesis-visual__header">
-            <span>Defensive evaluation</span>
-            <span>RAG testbed</span>
-          </div>
-          <div className="thesis-visual__stages">
-            <span>Threat-intelligence corpus</span>
-            <span>Retrieval stage</span>
-            <span>Model answer stage</span>
-          </div>
-          <div className="thesis-visual__measures">
-            <div>
-              <span>Measure 01</span>
-              <strong>Was poisoned content retrieved?</strong>
-            </div>
-            <div>
-              <span>Measure 02</span>
-              <strong>Did it change the final answer?</strong>
-            </div>
-          </div>
-        </div>
+        <figure className="thesis-project-photo">
+          <Image
+            src="/images/thesis_home.webp"
+            alt="Cybersecurity interface representing the security focus of the RAG poisoning thesis."
+            width={4576}
+            height={3051}
+            sizes="(max-width: 768px) 100vw, 46vw"
+            className="thesis-project-photo__image"
+          />
+        </figure>
       );
     case "infoplaza":
       return (

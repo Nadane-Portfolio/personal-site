@@ -4,7 +4,7 @@ export function HeroSystemVisual() {
   return (
     <div className="hero-system-visual">
       <Image
-        src="/images/from-problem-to-practical-systems.png"
+        src="/images/home_hero.webp"
         alt="Diagram showing business problems, product thinking, data and AI engineering combining into practical systems that produce reliable workflows and useful tools."
         width={1536}
         height={1024}

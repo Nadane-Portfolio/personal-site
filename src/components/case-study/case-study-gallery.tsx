@@ -9,17 +9,101 @@ type CaseStudyGalleryProps = {
   slides: readonly CaseStudyGallerySlide[];
 };
 
+const MIN_ZOOM = 100;
+const MAX_ZOOM = 250;
+const ZOOM_STEP = 12;
+
 export function CaseStudyGallery({ slides }: CaseStudyGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [isZoomed, setIsZoomed] = useState(false);
+  const [zoomPercent, setZoomPercent] = useState(MIN_ZOOM);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const activeSlide = slides[activeIndex];
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const activeSlide = slides[activeIndex];
+  const imageStageRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<{
+    pointerId: number;
+    startX: number;
+    startY: number;
+    panX: number;
+    panY: number;
+  } | null>(null);
+
+  const resetView = () => {
+    setZoomPercent(MIN_ZOOM);
+    setPan({ x: 0, y: 0 });
+    setIsDragging(false);
+    dragRef.current = null;
+  };
+
+  const constrainPan = (nextPan: { x: number; y: number }, zoom: number) => {
+    const stage = imageStageRef.current;
+
+    if (!stage || !activeSlide || zoom <= MIN_ZOOM) {
+      return { x: 0, y: 0 };
+    }
+
+    const scale = zoom / MIN_ZOOM;
+    const stageAspect = stage.clientWidth / stage.clientHeight;
+    const imageAspect = activeSlide.width / activeSlide.height;
+    const fittedWidth =
+      imageAspect > stageAspect
+        ? stage.clientWidth
+        : stage.clientHeight * imageAspect;
+    const fittedHeight =
+      imageAspect > stageAspect
+        ? stage.clientWidth / imageAspect
+        : stage.clientHeight;
+    const maxX = (fittedWidth * (scale - 1)) / 2;
+    const maxY = (fittedHeight * (scale - 1)) / 2;
+
+    return {
+      x: Math.min(Math.max(nextPan.x, -maxX), maxX),
+      y: Math.min(Math.max(nextPan.y, -maxY), maxY),
+    };
+  };
+
+  const adjustZoom = (
+    direction: 1 | -1,
+    anchor?: { x: number; y: number },
+  ) => {
+    setZoomPercent((current) => {
+      const next = Math.min(
+        Math.max(current + direction * ZOOM_STEP, MIN_ZOOM),
+        MAX_ZOOM,
+      );
+
+      setPan((currentPan) => {
+        const stage = imageStageRef.current;
+
+        if (!stage || !anchor || next === MIN_ZOOM) {
+          return constrainPan(currentPan, next);
+        }
+
+        const currentScale = current / MIN_ZOOM;
+        const nextScale = next / MIN_ZOOM;
+        const relativeX = anchor.x - stage.clientWidth / 2;
+        const relativeY = anchor.y - stage.clientHeight / 2;
+        const nextPan = {
+          x:
+            relativeX -
+            (nextScale / currentScale) * (relativeX - currentPan.x),
+          y:
+            relativeY -
+            (nextScale / currentScale) * (relativeY - currentPan.y),
+        };
+
+        return constrainPan(nextPan, next);
+      });
+      return next;
+    });
+  };
 
   const selectSlide = (index: number) => {
     setActiveIndex(index);
-    setIsZoomed(false);
+    resetView();
   };
 
   const showPrevious = () => {
@@ -31,12 +115,12 @@ export function CaseStudyGallery({ slides }: CaseStudyGalleryProps) {
   };
 
   const openLightbox = () => {
-    setIsZoomed(false);
+    resetView();
     setIsLightboxOpen(true);
   };
 
   const closeLightbox = () => {
-    setIsZoomed(false);
+    resetView();
     setIsLightboxOpen(false);
   };
 
@@ -45,33 +129,37 @@ export function CaseStudyGallery({ slides }: CaseStudyGalleryProps) {
       return;
     }
 
-    const previousOverflow = document.body.style.overflow;
+    const previousOverflow = document.body.style.getPropertyValue("overflow");
     const trigger = triggerRef.current;
-    document.body.style.overflow = "hidden";
+    document.body.style.setProperty("overflow", "hidden");
     closeButtonRef.current?.focus();
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        closeLightbox();
+        setZoomPercent(MIN_ZOOM);
+        setPan({ x: 0, y: 0 });
+        setIsDragging(false);
+        dragRef.current = null;
+        setIsLightboxOpen(false);
       }
 
       if (event.key === "ArrowLeft") {
         setActiveIndex(
           (current) => (current - 1 + slides.length) % slides.length,
         );
-        setIsZoomed(false);
+        resetView();
       }
 
       if (event.key === "ArrowRight") {
         setActiveIndex((current) => (current + 1) % slides.length);
-        setIsZoomed(false);
+        resetView();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = previousOverflow;
+      document.body.style.setProperty("overflow", previousOverflow);
       window.removeEventListener("keydown", handleKeyDown);
       trigger?.focus();
     };
@@ -180,14 +268,83 @@ export function CaseStudyGallery({ slides }: CaseStudyGalleryProps) {
               </button>
             </div>
             <div
+              ref={imageStageRef}
               className="case-study-lightbox__image-wrap"
-              data-zoomed={isZoomed || undefined}
+              data-zoomed={zoomPercent > MIN_ZOOM || undefined}
+              data-dragging={isDragging || undefined}
+              onWheel={(event) => {
+                if (event.deltaY === 0) {
+                  return;
+                }
+
+                event.preventDefault();
+                const bounds = event.currentTarget.getBoundingClientRect();
+                adjustZoom(event.deltaY < 0 ? 1 : -1, {
+                  x: event.clientX - bounds.left,
+                  y: event.clientY - bounds.top,
+                });
+              }}
+              onPointerDown={(event) => {
+                if (zoomPercent <= MIN_ZOOM) {
+                  return;
+                }
+
+                event.preventDefault();
+                event.currentTarget.setPointerCapture(event.pointerId);
+                dragRef.current = {
+                  pointerId: event.pointerId,
+                  startX: event.clientX,
+                  startY: event.clientY,
+                  panX: pan.x,
+                  panY: pan.y,
+                };
+                setIsDragging(true);
+              }}
+              onPointerMove={(event) => {
+                const drag = dragRef.current;
+
+                if (!drag || drag.pointerId !== event.pointerId) {
+                  return;
+                }
+
+                setPan(
+                  constrainPan(
+                    {
+                      x: drag.panX + event.clientX - drag.startX,
+                      y: drag.panY + event.clientY - drag.startY,
+                    },
+                    zoomPercent,
+                  ),
+                );
+              }}
+              onPointerUp={(event) => {
+                if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+                  event.currentTarget.releasePointerCapture(event.pointerId);
+                }
+
+                dragRef.current = null;
+                setIsDragging(false);
+              }}
+              onPointerCancel={(event) => {
+                if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+                  event.currentTarget.releasePointerCapture(event.pointerId);
+                }
+
+                dragRef.current = null;
+                setIsDragging(false);
+              }}
+              onLostPointerCapture={(event) => {
+                if (dragRef.current?.pointerId === event.pointerId) {
+                  dragRef.current = null;
+                  setIsDragging(false);
+                }
+              }}
             >
-              <button
-                type="button"
-                className="case-study-lightbox__zoom-button"
-                onClick={() => setIsZoomed((zoomed) => !zoomed)}
-                aria-label={isZoomed ? "Zoom out" : "Zoom in"}
+              <div
+                className="case-study-lightbox__image-transform"
+                style={{
+                  transform: `translate3d(${pan.x}px, ${pan.y}px, 0)`,
+                }}
               >
                 <Image
                   src={activeSlide.src}
@@ -196,8 +353,34 @@ export function CaseStudyGallery({ slides }: CaseStudyGalleryProps) {
                   height={activeSlide.height}
                   sizes="100vw"
                   className="case-study-lightbox__image"
+                  style={{
+                    transform: `scale(${zoomPercent / MIN_ZOOM})`,
+                  }}
                 />
-              </button>
+              </div>
+              <div
+                className="case-study-lightbox__zoom-controls"
+                aria-label="Image zoom controls"
+                onPointerDown={(event) => event.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  onClick={() => adjustZoom(-1)}
+                  aria-label="Zoom out"
+                  disabled={zoomPercent === MIN_ZOOM}
+                >
+                  <span aria-hidden="true">−</span>
+                </button>
+                <output aria-live="polite">{zoomPercent}%</output>
+                <button
+                  type="button"
+                  onClick={() => adjustZoom(1)}
+                  aria-label="Zoom in"
+                  disabled={zoomPercent === MAX_ZOOM}
+                >
+                  <span aria-hidden="true">+</span>
+                </button>
+              </div>
             </div>
             <div className="case-study-lightbox__footer">
               <div className="case-study-lightbox__controls" aria-label="Image viewer controls">

@@ -1707,6 +1707,41 @@ canvas {
   color: var(--color-muted);
 }
 
+.case-study-summary__fact--source a,
+.compact-project__external-link {
+  color: var(--color-accent);
+}
+
+.case-study-summary__fact--source a:hover,
+.compact-project__external-link:hover {
+  color: var(--color-accent-hover);
+}
+
+.case-study-summary--compact {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding-block: 1.25rem;
+}
+
+.case-study-summary--compact .case-study-summary__facts {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 0;
+}
+
+.case-study-summary--compact .case-study-summary__fact--source {
+  grid-column: auto;
+}
+
+.compact-project__external-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
 .case-study-sections {
   margin-top: clamp(4rem, 8vw, 7rem);
 }
@@ -1973,30 +2008,18 @@ canvas {
 }
 
 .case-study-lightbox__image-wrap {
+  position: relative;
   display: flex;
   flex: 1 1 auto;
   min-height: 0;
   min-width: 0;
   align-items: center;
   justify-content: center;
-  overflow: auto;
+  overflow: hidden;
   border: 1px solid rgb(255 255 255 / 0.2);
   border-radius: var(--radius-md);
   background: var(--color-contrast);
-}
-
-.case-study-lightbox__zoom-button {
-  display: flex;
-  width: 100%;
-  min-width: 0;
-  height: 100%;
-  min-height: 0;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: zoom-in;
+  cursor: default;
 }
 
 .case-study-lightbox__image {
@@ -2006,26 +2029,79 @@ canvas {
   height: auto;
   max-height: 100%;
   object-fit: contain;
+  transform-origin: center;
+  transition: transform 160ms ease-out;
+  user-select: none;
+}
+
+.case-study-lightbox__image-transform {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
 }
 
 .case-study-lightbox__image-wrap[data-zoomed] {
-  align-items: flex-start;
-  justify-content: flex-start;
+  cursor: grab;
 }
 
-.case-study-lightbox__image-wrap[data-zoomed] .case-study-lightbox__zoom-button {
-  width: 190%;
-  min-width: 190%;
-  height: auto;
-  min-height: 100%;
-  cursor: zoom-out;
+.case-study-lightbox__image-wrap[data-dragging] {
+  cursor: grabbing;
 }
 
-.case-study-lightbox__image-wrap[data-zoomed] .case-study-lightbox__image {
-  width: 100%;
-  max-width: none;
-  max-height: none;
-  height: auto;
+.case-study-lightbox__image-wrap[data-dragging] .case-study-lightbox__image {
+  transition: none;
+}
+
+.case-study-lightbox__zoom-controls {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.28);
+  border-radius: var(--radius-sm);
+  background: rgb(21 25 34 / 0.82);
+  color: var(--color-surface);
+}
+
+.case-study-lightbox__zoom-controls button {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-inline-end: 1px solid rgb(255 255 255 / 0.2);
+  background: transparent;
+  color: inherit;
+  font-size: 1rem;
+}
+
+.case-study-lightbox__zoom-controls button:last-child {
+  border-inline-start: 1px solid rgb(255 255 255 / 0.2);
+  border-inline-end: 0;
+}
+
+.case-study-lightbox__zoom-controls button:hover:not(:disabled) {
+  background: rgb(255 255 255 / 0.12);
+}
+
+.case-study-lightbox__zoom-controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.case-study-lightbox__zoom-controls output {
+  width: 3.25rem;
+  text-align: center;
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.75rem;
 }
 
 .case-study-lightbox__footer a {

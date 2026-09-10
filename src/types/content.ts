@@ -72,6 +72,11 @@ export type ProjectSourceStatus = {
   repositoryUrl?: string;
 };
 
+export type ProjectExternalLink = {
+  label: string;
+  href: string;
+};
+
 export type ProjectMedia =
   | {
       kind: "image";
@@ -144,5 +149,6 @@ export type Project = {
   attributionNote?: string;
   technology: readonly string[];
   source?: ProjectSourceStatus;
+  externalLink?: ProjectExternalLink;
   caseStudy?: CaseStudyContent;
 };

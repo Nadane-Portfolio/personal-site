@@ -24,6 +24,17 @@ export function CompactProjectItem({ project }: CompactProjectItemProps) {
         {project.role}
       </p>
       <p className="compact-project__technology">{project.technology.join(", ")}</p>
+      {project.externalLink ? (
+        <a
+          className="compact-project__external-link"
+          href={project.externalLink.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${project.externalLink.label} for ${project.title} (opens in a new tab)`}
+        >
+          {project.externalLink.label} <span aria-hidden="true">↗</span>
+        </a>
+      ) : null}
     </article>
   );
 }
